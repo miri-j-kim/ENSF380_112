@@ -30,9 +30,11 @@ public class Registration{
 
 //Must create a connection to the database, no arguments, no return value    
     public void initializeConnection(){
-
-/***********ADD CODE HERE***********/                
-
+        try{
+            dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }              
     }
     
     String getDburl(){
@@ -107,9 +109,12 @@ public class Registration{
     }    
 
     public void close() {
-        
-/***********ADD CODE HERE***********/                
-
+        try {
+            results.close();
+            dbConnect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }              
     }
     
     public static void main(String[] args) {
